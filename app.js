@@ -26,7 +26,7 @@ const finances = {
 };
 
 const extraRows = [
-  ['Insurance', 3500],
+  ['Health Insurance', 3500],
   ['Books', 1000],
   ['Clubs', 600],
   ['LAB', 600],
