@@ -220,7 +220,7 @@ function paymentSlipModal(){
       </div>
 
       <div class="account-amount">
-        <span>Add to Student Account</span>
+        <span>Add to Your Account</span>
         <strong>$10,800.00</strong>
       </div>
 
