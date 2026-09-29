@@ -3,7 +3,7 @@ const state = {
 };
 
 const profile = {
-  name: 'Saita Syedda',
+  name: 'Syeda',
   country: 'Pakistan',
   city: 'Multan',
   province: 'Punjab'
