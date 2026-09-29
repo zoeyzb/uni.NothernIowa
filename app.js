@@ -87,7 +87,7 @@ function studentCenter(){
       <div>
         <div class="alert">
           <div class="alert-main"><div class="alert-icon">!</div><div><strong>Payment Overdue</strong><br><span class="small">Overdue by ${finances.dueDate}.</span></div></div>
-          <a href="#/payment" class="btn btn-danger">Pay Now</a>
+          <button class="btn btn-danger pay-trigger" type="button">Pay Now</button>
         </div>
         <div class="card">
           <div class="card-title">Account Summary</div>
@@ -124,7 +124,7 @@ function paymentPage(){
     <h1 class="page-title">Payment Overview</h1>
     <div class="alert">
       <div class="alert-main"><div class="alert-icon">!</div><div><strong>Payment overdue</strong><br><span>Overdue by ${finances.dueDate}.</span></div></div>
-      <button class="btn btn-danger" id="payBtn">Pay Now</button>
+      <button class="btn btn-danger pay-trigger" type="button">Pay Now</button>
     </div>
     <div class="grid">
       <div>
@@ -179,7 +179,7 @@ function accountPage(){
       <div>
         <div class="alert">
           <div class="alert-main"><div class="alert-icon">!</div><div><strong>Payment Overdue</strong><br><span class="small">Overdue by ${finances.dueDate}.</span></div></div>
-          <a href="#/payment" class="btn btn-danger">Make a Payment</a>
+          <button class="btn btn-danger pay-trigger" type="button">Make a Payment</button>
         </div>
         <div class="card">
           <div class="card-title">Account Balance & Status</div>
@@ -197,6 +197,46 @@ function accountPage(){
         </div>
       </div>
     </div>`;
+}
+
+
+function paymentSlipModal(){
+  const existing = document.getElementById('paymentSlipModal');
+  if(existing) existing.remove();
+
+  const modal = document.createElement('div');
+  modal.id = 'paymentSlipModal';
+  modal.className = 'modal-backdrop';
+  modal.innerHTML = `
+    <div class="payment-modal" role="dialog" aria-modal="true" aria-labelledby="paymentSlipTitle">
+      <button class="modal-close" type="button" aria-label="Close">×</button>
+      <div class="modal-status-icon">✓</div>
+      <h2 id="paymentSlipTitle">Payment Slip Already Generated</h2>
+      <p class="modal-copy">A payment slip has already been generated for the amount below.</p>
+
+      <div class="slip-amount">
+        <span>Generated Slip Amount</span>
+        <strong>$5,600.00</strong>
+      </div>
+
+      <div class="account-amount">
+        <span>Amount Showing in Account</span>
+        <strong>$10,800.00</strong>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-primary modal-ok" type="button">OK</button>
+      </div>
+    </div>`;
+
+  document.body.appendChild(modal);
+
+  const close = () => modal.remove();
+  modal.querySelector('.modal-close').addEventListener('click', close);
+  modal.querySelector('.modal-ok').addEventListener('click', close);
+  modal.addEventListener('click', e => {
+    if(e.target === modal) close();
+  });
 }
 
 function render(){
@@ -226,8 +266,9 @@ function render(){
     });
   }
 
-  const pay = document.getElementById('payBtn');
-  if(pay) pay.addEventListener('click', ()=>alert('Payment processing is not available on this site.'));
+  document.querySelectorAll('.pay-trigger').forEach(btn=>{
+    btn.addEventListener('click', paymentSlipModal);
+  });
 }
 
 window.addEventListener('hashchange', render);
