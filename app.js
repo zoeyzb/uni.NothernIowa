@@ -216,16 +216,16 @@ function paymentSlipModal(){
 
       <div class="slip-amount">
         <span>Generated Slip Amount</span>
-        <strong>$5,600.00</strong>
+        <strong>$5,800.00</strong>
       </div>
 
       <div class="account-amount">
-        <span>Amount Showing in Account</span>
+        <span>Add to Student Account</span>
         <strong>$10,800.00</strong>
       </div>
 
       <div class="modal-actions">
-        <button class="btn btn-primary modal-ok" type="button">OK</button>
+        <button class="btn btn-primary modal-ok" type="button">Continue</button>
       </div>
     </div>`;
 
