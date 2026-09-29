@@ -31,7 +31,7 @@ const extraRows = [
   ['Clubs', 600],
   ['LAB', 600],
   ['Emergency Fund', 2100],
-  ['Flight', 1500],
+  ['Travel', 1500],
   ['Other / Miscellaneous', 1500]
 ];
 
