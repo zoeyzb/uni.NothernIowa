@@ -1,9 +1,9 @@
 const state = {
-  loggedIn: sessionStorage.getItem('demoLoggedIn') === '1'
+  loggedIn: sessionStorage.getItem('studentLoggedIn') === '1'
 };
 
 const profile = {
-  name: 'Syedda Saita',
+  name: 'Saita Syedda',
   country: 'Pakistan',
   city: 'Multan',
   province: 'Punjab'
@@ -37,40 +37,35 @@ const extraRows = [
 
 const money = n => '$' + n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
 
-function shell(content){
-  return content + '<div class="footer-note">This site is a clearly labeled personal-project mockup. It is not affiliated with, endorsed by, or connected to the University of Northern Iowa. No real payments or credentials are processed.</div>';
-}
-
 function loginPage(){
-  return shell(`
+  return `
     <section class="login-wrap">
       <div class="login-panel">
-        <div class="login-logo">Student Center Demo</div>
+        <div class="login-logo">Student Center</div>
         <form id="loginForm">
-          <label for="username">Demo ID</label>
-          <input id="username" autocomplete="off" placeholder="Enter demo ID" />
-          <label for="password">Demo Password</label>
-          <input id="password" type="password" autocomplete="off" placeholder="Enter demo password" />
-          <div class="hero-actions"><button class="btn btn-primary" type="submit">Demo Login</button></div>
-          <p class="login-note">For safety, this demo does not store or transmit credentials. Any non-empty values will open the mockup.</p>
+          <label for="username">User ID</label>
+          <input id="username" autocomplete="off" placeholder="Enter user ID" />
+          <label for="password">Password</label>
+          <input id="password" type="password" autocomplete="off" placeholder="Enter password" />
+          <div class="hero-actions"><button class="btn btn-primary" type="submit">Login</button></div>
         </form>
       </div>
       <div class="login-info">
-        <h1 class="page-title" style="font-size:28px">Welcome to the Demo Portal</h1>
-        <p>This personal project recreates the general layout and navigation style of a student portal while staying clearly marked as a mockup.</p>
+        <h1 class="page-title" style="font-size:28px">Welcome to Student Center</h1>
+        <p>Access your academic courses, account information, payment overview, and student details.</p>
         <div class="card" style="margin-top:20px">
-          <div class="card-title">What you can open</div>
+          <div class="card-title">Student Access</div>
           <div class="card-body">
-            <p>Student Center, course list, payment overview, and account details.</p>
+            <p>Use the navigation after signing in to view your courses, account balance, and personal information.</p>
           </div>
         </div>
       </div>
-    </section>`);
+    </section>`;
 }
 
 function studentCenter(){
   const rows = courses.map(c=>`<tr><td><strong>${c[0]}</strong></td><td>${c[1]}</td><td>${c[2]}</td><td><span class="pill">Enrolled</span></td></tr>`).join('');
-  return shell(`
+  return `
     <h1 class="page-title">${profile.name}'s Student Center</h1>
     <div class="grid">
       <div>
@@ -105,12 +100,12 @@ function studentCenter(){
           </div>
         </div>
       </div>
-    </div>`);
+    </div>`;
 }
 
 function coursesPage(){
   const rows = courses.map(c=>`<tr><td><strong>${c[0]}</strong></td><td>${c[1]}</td><td>${c[2]}</td><td><span class="pill">Enrolled</span></td></tr>`).join('');
-  return shell(`
+  return `
     <h1 class="page-title">${profile.name}'s Course List</h1>
     <div class="card">
       <div class="card-title">Current Academic Courses</div>
@@ -120,16 +115,16 @@ function coursesPage(){
           <tbody>${rows}</tbody>
         </table>
       </div>
-    </div>`);
+    </div>`;
 }
 
 function paymentPage(){
   const rows = extraRows.map(r=>`<tr><td>${r[0]}</td><td><strong>${money(r[1])}</strong></td></tr>`).join('');
-  return shell(`
+  return `
     <h1 class="page-title">Payment Overview</h1>
     <div class="alert">
       <div class="alert-main"><div class="alert-icon">!</div><div><strong>Payment overdue</strong><br><span>Overdue by ${finances.dueDate}.</span></div></div>
-      <button class="btn btn-danger" id="fakePayBtn">Pay Now</button>
+      <button class="btn btn-danger" id="payBtn">Pay Now</button>
     </div>
     <div class="grid">
       <div>
@@ -156,15 +151,14 @@ function paymentPage(){
             <p><strong style="color:var(--danger)">Payment status: overdue</strong></p>
             <div class="summary-row"><span>Due Date</span><strong>${finances.dueDate}</strong></div>
             <div class="summary-row"><span>Total Amount Due</span><strong>${money(finances.total)}</strong></div>
-            <p class="small muted">The Pay Now control is intentionally non-functional in this demo.</p>
           </div>
         </div>
       </div>
-    </div>`);
+    </div>`;
 }
 
 function accountPage(){
-  return shell(`
+  return `
     <h1 class="page-title">${profile.name}'s Account Details</h1>
     <div class="grid">
       <div>
@@ -202,7 +196,7 @@ function accountPage(){
           </div>
         </div>
       </div>
-    </div>`);
+    </div>`;
 }
 
 function render(){
@@ -225,20 +219,20 @@ function render(){
       e.preventDefault();
       const u = document.getElementById('username').value.trim();
       const p = document.getElementById('password').value.trim();
-      if(!u || !p){ alert('Enter any demo ID and demo password.'); return; }
+      if(!u || !p){ alert('Enter your user ID and password.'); return; }
       state.loggedIn = true;
-      sessionStorage.setItem('demoLoggedIn','1');
+      sessionStorage.setItem('studentLoggedIn','1');
       location.hash = '#/student-center';
     });
   }
 
-  const pay = document.getElementById('fakePayBtn');
-  if(pay) pay.addEventListener('click', ()=>alert('Demo only — no payment is processed.'));
+  const pay = document.getElementById('payBtn');
+  if(pay) pay.addEventListener('click', ()=>alert('Payment processing is not available on this site.'));
 }
 
 window.addEventListener('hashchange', render);
 document.getElementById('signOutBtn').addEventListener('click', ()=>{
-  sessionStorage.removeItem('demoLoggedIn');
+  sessionStorage.removeItem('studentLoggedIn');
   state.loggedIn = false;
   location.hash = '#/login';
 });
