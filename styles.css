@@ -62,3 +62,80 @@ input{width:100%;padding:13px;border:1px solid #9b8fa1;border-radius:6px;font-si
   .quick-links,.info-grid{grid-template-columns:1fr}
   #app{padding:16px}
 }
+
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(20,13,24,.58);
+  display:grid;
+  place-items:center;
+  padding:20px;
+  z-index:9999;
+}
+.payment-modal{
+  width:min(520px,100%);
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 24px 70px rgba(0,0,0,.28);
+  padding:30px;
+  position:relative;
+  text-align:center;
+  border-top:6px solid var(--purple);
+}
+.modal-close{
+  position:absolute;
+  top:12px;
+  right:14px;
+  border:0;
+  background:transparent;
+  font-size:28px;
+  line-height:1;
+  cursor:pointer;
+  color:#6f6873;
+}
+.modal-status-icon{
+  width:54px;
+  height:54px;
+  margin:0 auto 14px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#eee7f2;
+  color:var(--purple);
+  font-size:28px;
+  font-weight:900;
+}
+.payment-modal h2{
+  margin:0 0 8px;
+  color:var(--purple-dark);
+}
+.modal-copy{
+  margin:0 0 22px;
+  color:var(--muted);
+}
+.slip-amount,.account-amount{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:18px;
+  padding:15px 16px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  margin-top:12px;
+  text-align:left;
+}
+.slip-amount strong{
+  color:var(--purple-dark);
+  font-size:20px;
+}
+.account-amount{
+  background:#fff6f6;
+  border-color:#efb2b5;
+}
+.account-amount strong{
+  color:var(--danger);
+  font-size:20px;
+}
+.modal-actions{
+  margin-top:22px;
+}
